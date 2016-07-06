@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>Farmacia | Ingreso</title>
 
     <!-- Bootstrap core CSS -->
@@ -50,7 +52,7 @@
             <div id="login" class="animate form">
                 <section class="login_content">
                     {!!Form::open(['route'=>'login.store','method'=>'POST','autocomplete'=>'off','id'=>'frmLogin'])!!}
-                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        
                         <h1>Login Form</h1>
                         <div>
                             {!!Form::label('email','Correo (*):')!!}
