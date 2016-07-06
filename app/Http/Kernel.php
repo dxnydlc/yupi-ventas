@@ -49,5 +49,11 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \yupiventas\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin'     => \yupiventas\Http\Middleware\Admin::class,
+        'ventas'    => \yupiventas\Http\Middleware\ventas::class,
+        'marcas'    => \yupiventas\Http\Middleware\mdwMarca::class,
+        'categ'     => \yupiventas\Http\Middleware\mdwCategoria::class,
+        'clase'     => \yupiventas\Http\Middleware\mdwClase::class,
+        'isAdmin'   => \yupiventas\Http\Middleware\mdwAdmin::class
     ];
 }

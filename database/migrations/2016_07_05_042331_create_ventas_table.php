@@ -12,7 +12,7 @@ class CreateVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ventas', function (Blueprint $table) {
+        Schema::create('venta', function (Blueprint $table) {
             $table->increments('id');
             $table->char('tipo_doc', 4)->nullable();
             $table->integer('serie')->nullable();
@@ -48,6 +48,6 @@ class CreateVentasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ventas');
+        Schema::drop('venta');
     }
 }
