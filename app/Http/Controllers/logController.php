@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use yupiventas\Http\Requests;
 
 
+use yupiventas\config;
+use DB;
 use Auth;
 use Session;
 use Redirect;
@@ -48,6 +50,12 @@ class logController extends Controller
         #return $request->all();
         
         if( Auth::attempt( ['user' => $request['email'] , 'password' => $request['password'] ]  ) ){
+            #Vamos a revisar si el config esta listo
+            $config = $this->get_config();
+            if( $config == '' )
+            {
+                return view('config.config');
+            }
             return Redirect::to('home');
             #return "login";
         }
@@ -104,6 +112,14 @@ class logController extends Controller
     public function logout()
     {
         Auth::logout();
-        return Redirect::to('/login')->with('message-error','Datos incorrectos');
+        return Redirect::to('/login')->with('message-error','Fin de session');
     }
+
+    public function get_config()
+    {
+        $data      = DB::table('config')->first();
+        return $data;
+    }
+
+
 }

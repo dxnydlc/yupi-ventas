@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use yupiventas\Http\Requests;
 
 
-use yupiventas\Http\Requests;
+
 use yupiventas\Http\Requests\clienteCreateRequest;
 use yupiventas\Http\Requests\clienteUpdateRequest;
 use yupiventas\clientes;

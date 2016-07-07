@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use yupiventas\Http\Requests;
 
 
-use yupiventas\Http\Requests;
+
 use yupiventas\detalle_venta;
 use yupiventas\logs;
 

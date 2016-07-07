@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use yupiventas\Http\Requests;
 
 
-
+use yupiventas\config;
 use DB;
 use Auth;
 use Session;
@@ -42,6 +42,12 @@ class homeController extends Controller
         try {
             if( Auth::User()->name != '' )
             {
+                #Vamos a revisar si el config esta listo
+                $config = $this->get_config();
+                if( $config == '' )
+                {
+                    return view('config.config');
+                }
                 return view('index',compact('data'));
             }
         } catch (Exception $e) {
@@ -230,6 +236,16 @@ class homeController extends Controller
         
         return $response;
     }
+
+
+
+    public function get_config()
+    {
+        $data      = DB::table('config')->first();
+        return $data;
+    }
+
+
 
 }
 

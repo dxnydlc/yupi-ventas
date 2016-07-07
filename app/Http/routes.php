@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('productolote','productoLoteController');
     Route::resource('delventa','delVenta');
     Route::resource('usuario','UsuarioController');
+    Route::resource('config','configController');
 
     Route::resource('ex_ventas','exportDocs@all_ventas');
     Route::resource('ex_kardex','exportDocs@all_kardex');

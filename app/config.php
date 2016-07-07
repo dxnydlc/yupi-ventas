@@ -11,6 +11,6 @@ class config extends Model
     protected $table = 'config';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['empresa','ruc','direccion','serie_boleta','correlativo_boleta','serie_factura','correlativo_factura'];
+    protected $fillable = ['empresa','ruc','direccion','telefono','email','serie_boleta','correlativo_boleta','serie_factura','correlativo_factura'];
     protected $dates = ['deleted_at'];
 }

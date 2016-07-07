@@ -7,40 +7,26 @@ use Illuminate\Http\Request;
 use yupiventas\Http\Requests;
 
 
-
-use yupiventas\Http\Requests\UserCreateRequest;
-use yupiventas\Http\Requests\UserUpdateRequest;
-
-
-use yupiventas\User;
-
-
-use Illuminate\Routing\Route;
+use yupiventas\config;
+use DB;
+use Auth;
 use Session;
 use Redirect;
-use DB;
+
+use yupiventas\Http\Requests\addConfigRequest;
+use yupiventas\Http\Requests\updateConfigRequest;
 
 
-
-class UsuarioController extends Controller
+class configController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth' );
-        $this->middleware('admin' , ['only' => ['create','edit'] ] );
-    }
-
-
     public function index()
     {
-        $users = User::paginate(5);
-        return view('usuario.home',compact('users'));
+        //
     }
 
     /**
@@ -50,18 +36,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        //
     }
-
-
-    public function buscaDNI($valor)
-    {
-        $users = DB::table('users')->where('dni',$valor)->get();
-        return response()->json(
-            $users
-        );
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -69,12 +45,20 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addConfigRequest $request)
     {
-        User::create( $request->all() );
-        Session::flash('message','Usuario creado correctamente');
-        #return redirect('/usuario')->with('message','store');
-        return redirect::to('/usuario');
+        $config = $this->get_config();
+        if( $config == '' )
+        {
+            $data = config::create( $request->all() );
+        }
+        else
+        {
+            $marca = config::find( 1 );
+            $marca->fill( $request->all() );
+            $marca->save();
+        }
+        return redirect('/home')->with('estado', 'Configuración agregada');
     }
 
     /**
@@ -96,8 +80,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $User = User::find($id);
-        return view('marca.editMarca',["User" => $User ]);
+        //
     }
 
     /**
@@ -122,7 +105,13 @@ class UsuarioController extends Controller
     {
         //
     }
+
+
+    public function get_config()
+    {
+        $data      = DB::table('config')->first();
+        return $data;
+    }
+
+
 }
-
-
-
