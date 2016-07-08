@@ -12,7 +12,7 @@ class kardex extends Model
     protected $table = 'kardex';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['movimiento','fecha','id_producto','producto','id_persona','persona','documento','numero_doc','cantidad_e','precio_e','valor_e','cantidad_s','precio_s','valor_s','cantidad_f','precio_f','valor_f','id_user','usuario'];
+    protected $fillable = ['id_link','movimiento','fecha','id_producto','producto','id_persona','persona','documento','numero_doc','cantidad_e','precio_e','valor_e','cantidad_s','precio_s','valor_s','cantidad_f','precio_f','valor_f','id_user','usuario'];
     protected $dates = ['deleted_at'];
 
     public function getFechaAttribute($valor)
@@ -34,7 +34,10 @@ class kardex extends Model
             switch ($valor) {
                 case 'PE':
                     return 'Part.Ent';
-                    break;
+                break;
+                case 'VE':
+                    return 'Ventas';
+                break;
             }
         }
     }

@@ -263,7 +263,7 @@ class ventasController extends Controller
         #
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
-        $fecha_mysql = $mytime->format('d/m/Y H:m:s');
+        $fecha_mysql = $mytime->format('d/m/Y');
         #
         $config                 = $this->get_config();
         $request['serie']       = $config->serie_boleta;
@@ -309,6 +309,7 @@ class ventasController extends Controller
                 $valor_f    = $rs->cantidad * $rs->precio;
                 #Valores Kardex anterior
                 $data_insert = [
+                    'id_link'       => $venta->id,
                     'movimiento'    => 'E',
                     'fecha'         => $fecha_mysql,
                     'id_producto'   => $rs->id_producto,
@@ -316,7 +317,7 @@ class ventasController extends Controller
                     'id_persona'    => $venta->id_cliente,
                     'persona'       => $venta->cliente,
                     'documento'     => 'VE',
-                    'numero_doc'    => $venta->serie.'-'.$venta->correlativo,
+                    'numero_doc'    => $mask_doc,
                     'cantidad_e'    => $cant,
                     'precio_e'      => $precio,
                     'valor_e'       => $valor_f,

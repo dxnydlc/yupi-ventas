@@ -116,15 +116,15 @@
                                     <td class="text-primary" >{{$kdx->movimiento}}</td>
                                     <td class="text-primary" >{{$kdx->fecha}}</td>
                                     <td class="text-primary" >{{$kdx->producto}}</td>
-                                    <td class="text-primary" >{{$kdx->documento.' '.$kdx->numero_doc}}</td>
-                                    <td class="text-success" >{{$kdx->cantidad_e}}</td>
-                                    <td class="text-success" >{{$kdx->precio_e}}</td>
-                                    <td class="text-success" >{{$kdx->valor_e}}</td>
-                                    <td class="text-muted" >{{$kdx->cantidad_s}}</td>
-                                    <td class="text-muted" >{{$kdx->precio_s}}</td>
-                                    <td class="text-muted" >{{$kdx->valor_s}}</td>
-                                    <td class="text-info" >{{$kdx->cantidad_f}}</td>
-                                    <td class="text-info" >{{$kdx->precio_f}}</td>
+                                    <td class="text-primary" ><a href="/invoice_venta/{{$kdx->id_link}}">{{$kdx->numero_doc}}</a></td>
+                                    <th class="text-success" >{{$kdx->cantidad_e}}</th>
+                                    <th class="text-success" >{{$kdx->precio_e}}</th>
+                                    <th class="text-success" >{{$kdx->valor_e}}</th>
+                                    <th class="text-muted" >{{$kdx->cantidad_s}}</th>
+                                    <th class="text-muted" >{{$kdx->precio_s}}</th>
+                                    <th class="text-muted" >{{$kdx->valor_s}}</th>
+                                    <th class="text-info" >{{$kdx->cantidad_f}}</th>
+                                    <th class="text-info" >{{$kdx->precio_f}}</th>
                                     <td class="text-info" >{{$kdx->valor_f}}</td>
                                 </tr>
                                 @endforeach

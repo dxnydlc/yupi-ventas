@@ -34,6 +34,7 @@
                                 <th>Precio</th>
                                 <th>Stock</th>
                                 <th>Tipo</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,9 @@
                                 <td class="text-right" >{{$producto->precio}}</td>
                                 <td class="text-right" >{{$producto->stock}}</td>
                                 <td>{{$producto->clase}}</td>
+                                <td>
+                                    <a href="#" class=" btn btn-success addProdItem deaPrecio " tdnombre="{{$producto->nombre}}" tdid="{{$producto->id_producto}}" tdlab="{{$producto->laboratorio}}" tdfecha="{{$fecha}}" tdprecio="{{$producto->precio}}" tdlote="{{$producto->lote}}" ><span class="fa fa-check" ></span></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

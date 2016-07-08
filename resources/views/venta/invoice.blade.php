@@ -144,8 +144,8 @@ switch ($data['venta']->tipo_doc) {
                                                     
                                                     <td class="fuente-l tdTabla" >{{$items->producto}}<br/><small>{{$items->laboratorio}}</small></td>
                                                     <td class="fuente-l tdTabla" >{{$items->lote}}</td>
-                                                    <td class="fuente-r tdTabla" >{{$items->precio}}</td>
                                                     <td class="fuente-r tdTabla" >{{$items->cantidad}}</td>
+                                                    <td class="fuente-r tdTabla" >{{$items->precio}}</td>
                                                     <td class="fuente-r tdTabla" >{{$items->total}}</td>
                                                 </tr>
                                                 <?php $o++; $totalDoc = $totalDoc + $items->total;?>

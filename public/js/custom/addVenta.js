@@ -55,7 +55,7 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
 				$('#'+_objProdBD).val( _texto );
 				hideBucarProducto();
 				focusTable( 'tblItems' , _rowCount );
-			  swal("Agregado!", "El producto fue agregado a la lista", "success");
+				swal("Agregado!", "El producto fue agregado a la lista", "success");
 			});
 			//console.log('pressed ENTER!', $el.attr('tdnombre') +' > '+_objProdBD);
 		},
@@ -203,6 +203,33 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
   				
   			});
   			/*--------------------------------------*/
+  			$('.addProdItem').click(function(event) {
+  				event.preventDefault();
+  				var $el = $(this);
+  				var _texto = $el.attr('tdnombre'), _deaID = $el.attr('tdid');
+				if( $el.hasClass('deaPrecio') )
+				{
+					var _htmlProd = _texto+'<br><small>Lote: '+$el.attr('tdlote')+', Vence: '+$el.attr('tdfecha')+'</small>';
+					var _precio = $el.attr('tdprecio');
+					var _cantidad = $('#nwCant').html(), _total = 0;
+					$('#nwprecio').html( _precio );
+					$('#precio').val( _precio );
+					$('#laboratorio').val( $el.attr('tdlab') );
+					$('#lote').val( $el.attr('tdlote') );
+					$('#vencimiento').val( $el.attr('tdfecha') );
+					if(! isNaN(_cantidad) )
+					{
+						_total = _cantidad * _precio;
+						$('#nwTotal').html( _total );
+					}
+				}
+				$('#'+_objProdhtml).html( _htmlProd );//objeto html de la tabla
+				$('#'+_objProdidBD).val( _deaID );
+				$('#'+_objProdBD).val( _texto );
+				hideBucarProducto();
+				focusTable( 'tblItems' , _rowCount );
+				swal("Agregado!", "El producto fue agregado a la lista", "success");
+  			});
   			/*--------------------------------------*/
   			/*--------------------------------------*/
   			/*--------------------------------------*/
