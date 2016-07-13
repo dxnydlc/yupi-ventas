@@ -19,7 +19,10 @@ use Carbon;
 use DB;
 
 
+use Auth;
 
+use Excel;
+use PDF;
 
 class prodlte extends Controller
 {
@@ -134,6 +137,10 @@ class prodlte extends Controller
 
     public function set_logs($param)
     {
+        #User data
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
         $fecha_mysql = $mytime->format('d/m/Y H:m:s');
@@ -146,8 +153,8 @@ class prodlte extends Controller
             'contenido'     => $param['content'],
             'resultado'     => $param['res'],
             'fecha'         => $fecha_mysql,
-            'id_user'       => 1,
-            'usuario'       => 'DDELACRUZ'
+            'id_user'       => $id_user,
+            'usuario'       => $user
         ];
         logs::create($data_insert);
     }

@@ -96,6 +96,7 @@
                                     <th>#</th>
                                     <th>Documento</th>
                                     <th>Cliente</th>
+                                    <th>Total</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
                                     <th>Usuario</th>
@@ -119,6 +120,7 @@
                                         <?php } ?>
                                     </td>
                                     <td>{{$ve->cliente}}</td>
+                                    <td>{{$ve->total}}</td>
                                     <td>{{$ve->fecha}}</td>
                                     <td>{{$ve->estado}}</td>
                                     <td>{{$ve->user_creado}}</td>
@@ -144,7 +146,7 @@
     {!!Form::text('id',null,['class'=>'form-control ','id'=>'id'])!!}
     {!!Form::text('motivo_anular',null,['class'=>'form-control ','id'=>'motivo_anular'])!!}
     {!!Form::text('id_user_anula','1',['class'=>'form-control ','id'=>'id_user_anula'])!!}
-    {!!Form::text('user_anula','DDELACRUZ',['class'=>'form-control ','id'=>'user_anula'])!!}
+    {!!Form::text('user_anula',Auth::User()->user,['class'=>'form-control ','id'=>'user_anula'])!!}
 {!!Form::close()!!}
 </div>
 

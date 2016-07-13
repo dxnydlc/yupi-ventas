@@ -115,7 +115,7 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
   				event.preventDefault();
   				var _data = $('#frmProductoLote').serializeArray();
   				$.ajax({
-  					url 	: _url+'/addProLot',
+  					url 	: _url+'/prodlote',
   					type 	: 'POST',
   					dataType: 'json',
   					data 	: _data

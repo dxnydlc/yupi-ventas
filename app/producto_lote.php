@@ -13,7 +13,7 @@ class producto_lote extends Model
     protected $table = 'producto_lote';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id_producto','producto','lote','laboratorio','vencimiento','precio','precio_old','id_proveedor','proveedor','stock'];
+    protected $fillable = ['id_producto','producto','lote','laboratorio','vencimiento','precio','compra','utilidad','precio_old','id_proveedor','proveedor','stock'];
     protected $dates = ['deleted_at'];
 
     public function getVencimientoAttribute($valor)

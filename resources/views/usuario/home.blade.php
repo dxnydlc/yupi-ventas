@@ -49,6 +49,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
+                                    <th>Usuario</th>
                                     <th>Email</th>
                                     <th>DNI</th>
                                     <th>Tipo</th>
@@ -60,6 +61,7 @@
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name.' '.$user->last_name}}</td>
+                                    <td>{{$user->user}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->dni}}</td>
                                     <td>{{$user->type}}</td>

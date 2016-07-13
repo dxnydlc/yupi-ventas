@@ -42,12 +42,12 @@
         <a class="hiddenanchor" id="toregister"></a>
         <a class="hiddenanchor" id="tologin"></a>
         
-        @include('alertas.errors')
-        @include('alertas.userRequest')
+        
         
         <div id="wrapper">
 
-        
+        @include('alertas.errors')
+        @include('alertas.userRequest')
 
             <div id="login" class="animate form">
                 <section class="login_content">

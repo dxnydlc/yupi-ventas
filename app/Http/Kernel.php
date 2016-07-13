@@ -44,11 +44,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \yupiventas\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \yupiventas\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth'      => \yupiventas\Http\Middleware\Authenticate::class,
+        'auth.basic'=> \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'can'       => \Illuminate\Foundation\Http\Middleware\Authorize::class,
+        'guest'     => \yupiventas\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'  => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin'     => \yupiventas\Http\Middleware\Admin::class,
         'ventas'    => \yupiventas\Http\Middleware\ventas::class,
         'marcas'    => \yupiventas\Http\Middleware\mdwMarca::class,

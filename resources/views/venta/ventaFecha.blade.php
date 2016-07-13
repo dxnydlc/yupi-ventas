@@ -93,6 +93,7 @@
                                     <th>#</th>
                                     <th>Documento</th>
                                     <th>Cliente</th>
+                                    <th class="text-right" >Total</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
                                     <th>Usuario</th>
@@ -101,14 +102,7 @@
                             <tbody>
                                 @foreach($response['data'] as $ve)
                                 <?php
-                                switch ($ve->tipo_doc) {
-                                    case 'B':
-                                        $tipo_doc = 'Boleta';
-                                    break;
-                                    case 'F':
-                                        $tipo_doc = 'Factura';
-                                    break;
-                                }
+                                $tipo_doc = $ve->tipo_doc;
                                 ?>
                                 <tr id="fila_{{$ve->id}}" >
                                     <th scope="row">{{$ve->id}}</th>
@@ -120,6 +114,7 @@
                                         } ?>
                                     </td>
                                     <td>{{$ve->cliente}}</td>
+                                    <td class="text-right" >{{$ve->total}}</td>
                                     <td>{{$ve->fecha}}</td>
                                     <td>{{$ve->estado}}</td>
                                     <td>{{$ve->user_creado}}</td>

@@ -49,9 +49,9 @@ class kardex extends Model
     {
         if( $valor != '' )
         {
-            list($dia,$mes,$anio) = explode('/', $valor );
+            /*list($dia,$mes,$anio) = explode('/', $valor );
             $fecha = $anio.'-'.$mes.'-'.$dia;
-            $this->attributes['fecha'] = $fecha;
+            $this->attributes['fecha'] = $fecha;*/
         }
     }
 

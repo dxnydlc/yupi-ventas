@@ -96,9 +96,8 @@
                                     <th>#</th>
 	                                <th>Nombre</th>
 	                                <th>Lote</th>
-	                                <th>Lab.</th>
-	                                <th>Vencimiento</th>
-	                                <th>Precio</th>
+	                                <th>P. compra</th>
+                                    <th>P. venta</th>
 	                                <th>Stock</th>
 	                                <th>Tipo</th>
                                 </tr>
@@ -112,12 +111,12 @@
 	                            <tr tdnombre="{{$producto->nombre}}" tdid="{{$producto->id_producto}}" tdlab="{{$producto->laboratorio}}" tdfecha="{{$fecha}}" tdprecio="{{$producto->precio}}" tdlote="{{$producto->lote}}" class=" deaPrecio " >
 	                                <th scope="row">{{$producto->id_producto}}</th>
 	                                <td class="CRUD"  >
-	                                    {{$producto->nombre}}
+	                                    {{$producto->nombre}}<br/>
+                                        <small>Lab.: {{$producto->laboratorio}} vencimiento: {{$fecha}}</small>
 	                                </td>
 	                                <td>{{$producto->lote}}</td>
-	                                <td>{{$producto->laboratorio}}</td>
-	                                <td>{{$fecha}}</td>
-	                                <td class="text-right" >{{$producto->precio}}</td>
+	                                <td></td>
+                                    <td class="text-right" ><span class="badge badge-success" >{{$producto->precio}}</span></td>
 	                                <td class="text-right" >{{$producto->stock}}</td>
 	                                <td>{{$producto->clase}}</td>
 	                            </tr>

@@ -213,7 +213,7 @@ switch ($data['venta']->tipo_doc) {
                                     <div class="col-xs-12">
                                         <!--<button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>-->
                                         <!--<button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>-->
-                                        <a href="/invoice_venta_pdf/{{ $data['venta']->id }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</a>
+                                        <!--<a href="/invoice_venta_pdf/{{ $data['venta']->id }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</a>-->
                                     </div>
                                 </div>
                             </section>
