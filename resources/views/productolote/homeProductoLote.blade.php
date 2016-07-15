@@ -115,7 +115,7 @@
                                         <small>Lab.: {{$producto->laboratorio}} vencimiento: {{$fecha}}</small>
 	                                </td>
 	                                <td>{{$producto->lote}}</td>
-	                                <td></td>
+	                                <td class="text-right" ><span class="label label-primary" >{{$producto->compra}}</span></td>
                                     <td class="text-right" ><span class="badge badge-success" >{{$producto->precio}}</span></td>
 	                                <td class="text-right" >{{$producto->stock}}</td>
 	                                <td>{{$producto->clase}}</td>
@@ -150,7 +150,8 @@
 
       {!!Form::open(['route'=>'productolote.store','method'=>'post','id'=>'frmProductoLote' ])!!}
       <div class="modal-body">
-            <input type="hidden" name="tokenPL" id="tokenPL" />
+        <input type="hidden" name="tokenPL" id="tokenPL" />
+        <div class="row">
             <div class="col-md-8 col-sm-3 col-xs-12 form-group has-feedback">
                 {!!Form::label('lt_producto','Producto:' , ['class' => 'control-label ' ] )!!}
                 {!!Form::select('lt_producto', $data['prds'] ,null,[ 'id' => 'lt_producto', 'rel' => 'producto', 'placeholder'=>'Seleccione','class'=>'form-control combito'])!!}
@@ -159,18 +160,27 @@
                 {!!Form::label('lt_laboratorio','Laboratorio:' , ['class' => 'control-label ' ] )!!}
                 {!!Form::text('lt_laboratorio','',['class'=>'form-control ','id'=>'lt_laboratorio'])!!}
             </div><!-- /form-group -->
-            <div class="col-md-4 col-sm-3 col-xs-12 form-group has-feedback">
+        </div><!-- /row -->
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
                 {!!Form::label('lt_lote','Lote:' , ['class' => 'control-label ' ] )!!}
                 {!!Form::text('lt_lote','',['class'=>'form-control ','id'=>'lt_lote'])!!}
             </div><!-- /form-group -->
-            <div class="col-md-4 col-sm-3 col-xs-12 form-group has-feedback">
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
                 {!!Form::label('lt_vencimiento','Vencimiento:' , ['class' => 'control-label ' ] )!!}
                 {!!Form::text('lt_vencimiento','',['class'=>'form-control ','id'=>'lt_vencimiento'])!!}
             </div><!-- /form-group -->
-            <div class="col-md-4 col-sm-3 col-xs-12 form-group has-feedback">
-                {!!Form::label('lt_precio','Precio:' , ['class' => 'control-label ' ] )!!}
-                {!!Form::text('lt_precio','',['class'=>'form-control ','id'=>'lt_precio'])!!}
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                {!!Form::label('lt_compra','Precio Compra:' , ['class' => 'control-label ' ] )!!}
+                {!!Form::text('lt_compra','',['class'=>'form-control ','id'=>'lt_compra'])!!}
             </div><!-- /form-group -->
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                {!!Form::label('lt_venta','Precio Venta:' , ['class' => 'control-label ' ] )!!}
+                {!!Form::text('lt_venta','',['class'=>'form-control ','id'=>'lt_venta'])!!}
+            </div><!-- /form-group -->
+        </div><!-- /row -->
+            
+            
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

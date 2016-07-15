@@ -65,13 +65,16 @@ class productoLoteController extends Controller
         $token = $request['tokenPL'];
         $producto = productos::find( $request['lt_producto'] );
         #Ahora creamos el lote
+        $utilidad = 20;
         $data_lote = [
             'id_producto'   => $request['lt_producto'],
             'producto'      => $producto->nombre,
             'lote'          => $request['lt_lote'],
             'laboratorio'   => $request['lt_laboratorio'],
             'vencimiento'   => $request['lt_vencimiento'],
-            'precio'        => $request['lt_precio'],
+            'precio'        => $request['lt_venta'],
+            'compra'        => $request['lt_compra'],
+            'utilidad'      => $utilidad,
             'precio_old'    => 0,
             'id_proveedor'  => 1,
             'proveedor'     => 'Ninguno'
