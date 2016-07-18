@@ -19,6 +19,10 @@ use Redirect;
 use yupiventas\proveedores;
 use Carbon;
 use DB;
+use Auth;
+
+use Excel;
+use PDF;
 
 use yupiventas\kardex;
 
@@ -83,6 +87,9 @@ class peController extends Controller
      */
     public function store(peCreateRequest $request)
     {
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         DB::enableQueryLog();
         $response = array();
         $data = array();
@@ -96,8 +103,8 @@ class peController extends Controller
             'proveedor'     => $request['proveedor'],
             'fecha'         => $request['fecha'],#$anio.'-'.$mes.'-'.$dia,
             'token'         => $dea_token,
-            'id_user'       => 1,
-            'user'          => 'DDELACRUZ',
+            'id_user'       => $id_user,
+            'user'          => $user,
             'estado'        => 'ACT'
         ]);
         $token = Session::get('token_new_pe');
@@ -182,6 +189,9 @@ class peController extends Controller
      */
     public function update(peCreateRequest $request, $id)
     {
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         #DB::enableQueryLog();
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
@@ -232,8 +242,8 @@ class peController extends Controller
                     'cantidad_f'    => $saldo_cant,
                     'precio_f'      => $saldo_precio,
                     'valor_f'       => $saldo_valor_f,
-                    'id_user'       => '1',
-                    'usuario'       => 'DDELACRUZ'
+                    'id_user'       => $id_user,
+                    'usuario'       => $user
                 ];
                 $Kardex = kardex::create($data_insert);
                 #Fecha de vencimiento
@@ -271,6 +281,9 @@ class peController extends Controller
      */
     public function destroy($id)
     {
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
         $fecha_mysql = $mytime->format('d/m/Y');
@@ -319,8 +332,8 @@ class peController extends Controller
                     'cantidad_f'    => $saldo_cant,
                     'precio_f'      => $saldo_precio,
                     'valor_f'       => $saldo_valor_f,
-                    'id_user'       => '1',
-                    'usuario'       => 'DDELACRUZ'
+                    'id_user'       => $id_user,
+                    'usuario'       => $user
                 ];
                 $Kardex = kardex::create($data_insert);
             }
@@ -363,9 +376,18 @@ class peController extends Controller
 
     public function set_logs($param)
     {
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
         $fecha_mysql = $mytime->format('d/m/Y H:m:s');
+        $link_to = '';
+        #
+        if( $param['tipo'] == 'PL' )
+        {
+            $link_to = $param['link_to'];
+        }
         #
         $data_insert = [
             'tipo'          => $param['tipo'],
@@ -375,8 +397,9 @@ class peController extends Controller
             'contenido'     => $param['content'],
             'resultado'     => $param['res'],
             'fecha'         => $fecha_mysql,
-            'id_user'       => 1,
-            'usuario'       => 'DDELACRUZ'
+            'id_user'       => $id_user,
+            'usuario'       => $user,
+            'link_to'       => $link_to
         ];
         logs::create($data_insert);
     }

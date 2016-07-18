@@ -43,7 +43,11 @@
             </li>
             <li><a><i class="fa fa-table"></i> Inventario <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="/pe">Parte entrada</a>
+                    <li>
+                        <a href="/inventario">Nuevo inventario</a>
+                    </li>
+                    <li>
+                        <a href="/pe">Parte entrada</a>
                     </li>
                     <li><a href="/kardex">Kardex</a>
                     </li>

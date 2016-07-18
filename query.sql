@@ -12,6 +12,8 @@ SELECT * FROM proveedores;
 SELECT * FROM categoria;
 SELECT * FROM productos;
 SELECT * FROM kardex;
+SELECT * FROM inventario;
+SELECT * FROM inventario_detalle;
 -- ###############
 DESC detalle_venta;
 DESC venta;
@@ -24,7 +26,8 @@ DESC parte_entrada;
 DESC producto_lote;
 DESC productos;
 DESC proveedores;
-
+DESC inventario;
+DESC inventario_detalle;
 
 INSERT INTO `config`
 (`empresa`,`ruc`,`direccion`,`serie_boleta`,`correlativo_boleta`,`serie_factura`,`correlativo_factura`)
