@@ -171,7 +171,7 @@
         
     </div>
 
-<div class="">
+<div class=" hidden ">
 {!!Form::open(['route'=>'detalleInv.store','method'=>'post','id'=>'frmDetalle' ])!!}
     <input type="text" name="id_inventario" id="id_inventario" value="<?php echo $data["inventario"]->id; ?>" placeholder="id_venta" />
     <input type="text" name="producto" id="producto" value="" placeholder="producto" />
