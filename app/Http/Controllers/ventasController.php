@@ -234,7 +234,7 @@ class ventasController extends Controller
         #
         $data['fecha']          = $data['venta']->fecha;
         $data['token']          = $data['venta']->token;
-        $data['items']          = DB::table('detalle_venta')->where( "id_venta" , $id_venta )->get();
+        $data['items']          = DB::table('detalle_venta')->where( "id_venta" , $id_venta )->whereNull('deleted_at')->get();
 
         $data['serie']          = $data['venta']->serie;
         $data['correlativo']    = $data['venta']->correlativo;
@@ -278,9 +278,11 @@ class ventasController extends Controller
                 break;
         }
         #
+        
         $venta = venta::find( $id );
         $venta->fill( $request->all() );
         $venta->save();
+        
         #Mascara doc
         $mask_doc = $venta->tipo_doc.' 00'.$venta->serie.' - 000'.$venta->correlativo;
         #Aumentando el correlativo en la serie
@@ -289,6 +291,7 @@ class ventasController extends Controller
         $productos      = DB::table('detalle_venta')->where( "id_venta" , $id )->whereNull('deleted_at')->get();
         $venta          = venta::find( $id );
         #
+        
         if( count($productos) > 0 )
         {
             foreach ($productos as $key => $rs) {

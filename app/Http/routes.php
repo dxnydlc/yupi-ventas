@@ -60,6 +60,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('invoice_pe/{id}','peController@invoice');
     Route::get('ventas_fecha/{fecha}','ventasController@venta_fecha');
+
+    #Reportes
+    Route::get('rep_venta_user','reportesController@ventas_user');
     
 });
 

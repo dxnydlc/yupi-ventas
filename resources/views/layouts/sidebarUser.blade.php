@@ -17,7 +17,13 @@
                     </li>
                 </ul>
             </li>
-
+            <li><a><i class="fa fa-bar-chart-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li>
+                        <a href="/rep_venta_user">Resumen ventas usuario</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
     
