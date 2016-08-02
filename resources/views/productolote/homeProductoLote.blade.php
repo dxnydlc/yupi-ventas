@@ -107,12 +107,12 @@
 	                            <?php
 	                            list($anio,$mes,$dia) = explode('-', $producto->vencimiento );
 	                            $fecha = $dia.'/'.$mes.'/'.$anio;
+                                $mascara = $producto->nombre.' Lab.: '.$producto->laboratorio.' vencimiento: '.$fecha.'';
 	                            ?>
 	                            <tr tdnombre="{{$producto->nombre}}" tdid="{{$producto->id_producto}}" tdlab="{{$producto->laboratorio}}" tdfecha="{{$fecha}}" tdprecio="{{$producto->precio}}" tdlote="{{$producto->lote}}" class=" deaPrecio " >
 	                                <th scope="row">{{$producto->id_producto}}</th>
 	                                <td class="CRUD"  >
-	                                    {{$producto->nombre}}<br/>
-                                        <small>Lab.: {{$producto->laboratorio}} vencimiento: {{$fecha}}</small>
+                                        {!!link_to_route('productolote.edit', $title  = $mascara , $parameters =$producto->id_producto, $attributes = ['class'=>'btn-link '] )!!}
 	                                </td>
 	                                <td>{{$producto->lote}}</td>
 	                                <td class="text-right" ><span class="label label-primary" >{{$producto->compra}}</span></td>

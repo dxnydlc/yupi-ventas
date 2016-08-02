@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('cliente','clientesController');
     Route::resource('detventa','detalle_ventaController');
     Route::resource('prodlote','prodlte');
+    #Producto lote
     Route::resource('productolote','productoLoteController');
     Route::resource('delventa','delVenta');
     Route::resource('usuario','UsuarioController');

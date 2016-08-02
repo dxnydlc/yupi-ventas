@@ -106,7 +106,10 @@ class productoLoteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = array();
+        $data['data']   = productos::join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->where('productos.id_producto','=',$id)->get();
+        return $data;
+        return view('productolote.editarProductoLote',["data" => $data ]);
     }
 
     /**
