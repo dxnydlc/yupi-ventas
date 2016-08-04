@@ -9,15 +9,15 @@ use yupiventas\Http\Requests;
 
 
 use yupiventas\productos;
-use yupiventas\logs;
 use yupiventas\producto_lote;
 
 use Session;
 use Redirect;
-use Carbon;
 use DB;
 
-
+use Auth;
+use yupiventas\logs;
+use Carbon;
 
 
 class productoLoteController extends Controller
@@ -107,8 +107,8 @@ class productoLoteController extends Controller
     public function edit($id)
     {
         $data = array();
-        $data['data']   = productos::join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->where('productos.id_producto','=',$id)->get();
-        return $data;
+        $data = productos::join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->where('productos.id_producto','=',$id)->first();
+        #return $data;
         return view('productolote.editarProductoLote',["data" => $data ]);
     }
 
@@ -121,7 +121,18 @@ class productoLoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        #User data
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
+        $producto_lote = producto_lote::find( $id );
+        $producto_lote->fill( $request->all() );
+        $producto_lote->save();
+        #Personal Log
+        $this->set_logs(['tipo'=>'PL','tipo_doc'=>'PLT','key'=>$id_user,'evento'=>'update.ProdLte','content'=>'Has editado un precio de '.$producto_lote->producto ,'res'=>'Actualizado', 'link_to' => $producto_lote->id ]);
+        #
+        session::flash('message','Precio editado correctamente');
+        return redirect::to('/productolote');
     }
 
     /**
@@ -138,9 +149,18 @@ class productoLoteController extends Controller
 
     public function set_logs($param)
     {
+        $id_user    = Auth::User()->id;
+        $user       = Auth::User()->user;
+        #
         $mytime = Carbon\Carbon::now('America/Lima');
         $mytime->toDateString();
         $fecha_mysql = $mytime->format('d/m/Y H:m:s');
+        $link_to = '';
+        #
+        if( $param['tipo'] == 'PL' )
+        {
+            $link_to = $param['link_to'];
+        }
         #
         $data_insert = [
             'tipo'          => $param['tipo'],
@@ -150,8 +170,9 @@ class productoLoteController extends Controller
             'contenido'     => $param['content'],
             'resultado'     => $param['res'],
             'fecha'         => $fecha_mysql,
-            'id_user'       => 1,
-            'usuario'       => 'DDELACRUZ'
+            'id_user'       => $id_user,
+            'usuario'       => $user,
+            'link_to'       => $link_to
         ];
         logs::create($data_insert);
     }
