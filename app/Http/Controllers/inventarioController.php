@@ -187,7 +187,7 @@ class inventarioController extends Controller
                 $fecha_vence = $dia.'/'.$mes.'/'.$anio;
                 #calcular utilidad
                 $diferecia = (int)$rs->compra - (int)$rs->venta;
-                $utilidad = ($diferecia*100)/$rs->compra;
+                $utilidad = ($diferecia*100)/$rs->venta;
                 $data_lote = [
                     'id_producto'   => $rs->id_producto,
                     'producto'      => $rs->producto,

@@ -98,6 +98,7 @@
 	                                <th>Lote</th>
 	                                <th>P. compra</th>
                                     <th>P. venta</th>
+                                    <th>Utilidad</th>
 	                                <th>Stock</th>
 	                                <th>Tipo</th>
                                 </tr>
@@ -117,6 +118,7 @@
 	                                <td>{{$producto->lote}}</td>
 	                                <td class="text-right" ><span class="label label-primary" >{{$producto->compra}}</span></td>
                                     <td class="text-right" ><span class="badge badge-success" >{{$producto->precio}}</span></td>
+                                    <td class="text-right" >{{$producto->utilidad}}%</td>
 	                                <td class="text-right" >{{$producto->stock}}</td>
 	                                <td>{{$producto->clase}}</td>
 	                            </tr>
