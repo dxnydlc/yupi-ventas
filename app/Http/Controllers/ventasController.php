@@ -219,7 +219,7 @@ class ventasController extends Controller
         $mytime->toDateString();
         #
         #Productos con lote
-        $data['productos']      = DB::table('productos')->join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->get();
+        $data['productos']      = array();#DB::table('productos')->join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->get();
         $data['venta']          = venta::find( $id_venta );
         #Ya cerrado?
         if( $data['venta']->estado == 'Cerrado' )
@@ -650,6 +650,11 @@ class ventasController extends Controller
         #return view('venta.pdfInvoice', ['data' => $data] );
         #$invoice = PDF::loadView('venta.pdfInvoice',['data' => $data]);
         #return $invoice->stream();
+    }
+
+    public function buscar_producto( $q )
+    {
+        #
     }
 
 }

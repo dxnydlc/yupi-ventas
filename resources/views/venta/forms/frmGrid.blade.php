@@ -4,7 +4,7 @@
         <div class="panel-body">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Productos <small>Productos activos</small></h2>
+                    <h2>Productos <small>buscar poductos con lote asignado</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -23,7 +23,28 @@
                 </div>
                 <div class="x_content">
 
-                    <table class=" table table-bordered " id="tblProductos">
+
+                    <form class="form-horizontal form-label-left">
+                        <div class="divider-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Buscar producto</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">Buscar</button> 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="divider-dashed"></div>
+                    </form>
+
+
+
+                    <table class=" table table-bordered " id="tblProductosWWQ">
                         <thead>
                             <tr>
                                 <th>#</th>

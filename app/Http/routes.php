@@ -32,7 +32,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('pe','peController');
     Route::resource('kardex','kardexController');
+    
+    #ventas
     Route::resource('ventas','ventasController');
+
     Route::resource('allventas','allVentas');
     Route::resource('mb','ventasController@make_boleta');
     Route::resource('cliente','clientesController');
