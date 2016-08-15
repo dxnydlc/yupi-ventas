@@ -194,8 +194,10 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
 				},
 				function(isConfirm) {
 				  if (isConfirm) {
-				    swal("Cerrado!", "Se cerró el documento y se movió stock.", "success");
+				    
 				    $('#frmHeader').submit();
+				    swal("Cerrado!", "Se cerró el documento y se movió stock.", "success");
+
 				  } else {
 				    //swal("Cancelled", "Your imaginary file is safe :)", "error");
 				  }
@@ -203,7 +205,7 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
   				
   			});
   			/*--------------------------------------*/
-  			$('.addProdItem').click(function(event) {
+  			$(document).delegate('.addProdItem', 'click', function(event) {
   				event.preventDefault();
   				var $el = $(this);
   				var _texto = $el.attr('tdnombre'), _deaID = $el.attr('tdid');
@@ -287,6 +289,39 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
 				$('#cliente').val( _valor );
 			});
 			/*--------------------------------------*/
+			$('#btnBuscarProdLte').click(function(event) {
+				event.preventDefault();
+				var _data = $('#textoProd').val();
+				$.get('/buscarprod/'+_data, function(data) {
+					if(data.rows > 0 )
+					{
+						var _html = '', _fila = [];
+						for (var i = 0; i < data.rows; i++) {
+							_fila = data.data[i];
+							_html += '<tr>';
+								_html += '<td>'+_fila.producto+'</td>';
+								_html += '<td>'+_fila.lote+'</td>';
+								_html += '<td>'+_fila.laboratorio+'</td>';
+								_html += '<td>'+_fila.vencimiento+'</td>';
+								_html += '<td>'+_fila.precio+'</td>';
+								_html += '<td>'+_fila.stock+'</td>';
+								_html += '<td><a href="#" class=" btn btn-success addProdItem deaPrecio " tdnombre="'+_fila.producto+'" tdid="'+_fila.id_producto+'" tdlab="'+_fila.laboratorio+'" tdfecha="'+_fila.vencimiento+'" tdprecio="'+_fila.precio+'" tdlote="'+_fila.lote+'" ><span class="fa fa-check" ></span></a></td>';
+								_html += '';
+							_html += '</tr>';
+						}
+						$('#tblProductosWWQ tbody').html( _html );
+					}
+				},'json');
+			});
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*--------------------------------------*/
 		});
 
 })(jQuery);
@@ -339,7 +374,7 @@ function saveDetalle(){
 	function(){
 		/**/
 		var _data = $('#frmDetalle').serialize();
-		$.post( _servicio , _data , function(data, textStatus, xhr) {
+		$.post( '/detventa' , _data , function(data, textStatus, xhr) {
 			$('#frmDetalle')[0].reset();
 			swal("Agregado!", "Espere a que la página se cargue", "success");
 			document.location.reload();

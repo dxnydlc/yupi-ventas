@@ -17,6 +17,7 @@ use yupiventas\categoria;
 use yupiventas\marca;
 use yupiventas\clase;
 use yupiventas\proveedores;
+use yupiventas\producto_lote;
 
 use Session;
 use Redirect;
@@ -164,7 +165,18 @@ class productoController extends Controller
 
     public function buscar($q)
     {
-        return $q;
+        $response = array();
+        $data = producto_lote::where('producto','like','%'.$q.'%')->get();
+        if( count($data) > 0 ) 
+        {
+            $response['rows'] = count($data);
+            $response['data'] = $data;
+        }
+        else
+        {
+            $response['rows'] = 0;
+        }
+        return $response;
     }
 
 

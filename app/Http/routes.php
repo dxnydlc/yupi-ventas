@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('proveedor','proveedorController');
     
     Route::resource('producto','productoController');
-    Route::get('producto/{q}','productoController@buscar');
+    Route::get('buscarprod/{q}','productoController@buscar');
 
     Route::resource('detpe','detallePEController');
 

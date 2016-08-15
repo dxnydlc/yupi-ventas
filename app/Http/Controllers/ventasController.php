@@ -211,6 +211,7 @@ class ventasController extends Controller
      */
     public function edit($id)
     {
+        #return 'Hola';
         #DB::enableQueryLog();
         $id_venta = $id;
         $response = array();
@@ -257,6 +258,7 @@ class ventasController extends Controller
      */
     public function update(ventaUpdateRequest $request, $id)
     {   
+        #return 'Holaaaaa';
         $request['total'] = $request['totalDoc'];
         $id_user    = Auth::User()->id;
         $user       = Auth::User()->user;

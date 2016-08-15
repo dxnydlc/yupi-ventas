@@ -24,37 +24,35 @@
                 <div class="x_content">
 
 
-                    <form class="form-horizontal form-label-left">
+                    {!!Form::open(['route'=>'detventa.store','method'=>'post','id'=>'frmBuscarProdLte' , 'class' => 'form-horizontal form-label-left' ])!!}
                         <div class="divider-dashed"></div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Buscar producto</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="textoProd" name="textoProd" >
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">Buscar</button> 
+                                        <button id="btnBuscarProdLte" class="btn btn-primary" type="button">Buscar</button> 
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="divider-dashed"></div>
-                    </form>
+                    {!!Form::close()!!}
 
 
 
                     <table class=" table table-bordered " id="tblProductosWWQ">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Nombre</th>
                                 <th>Lote</th>
                                 <th>Lab.</th>
                                 <th>Vencimiento</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
-                                <th>Tipo</th>
                                 <th></th>
                             </tr>
                         </thead>

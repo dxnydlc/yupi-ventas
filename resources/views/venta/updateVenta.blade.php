@@ -19,6 +19,7 @@
 @section('jsHeader')
 <script>
     var _totalDoc = 0;
+    var _url = '<?php echo $_SERVER['SERVER_NAME']; ?>';
 </script>
 @endsection
 
