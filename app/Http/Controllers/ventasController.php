@@ -258,7 +258,7 @@ class ventasController extends Controller
      */
     public function update(ventaUpdateRequest $request, $id)
     {   
-        #return 'Holaaaaa';
+        #eturn $request->all();
         $request['total'] = $request['totalDoc'];
         $id_user    = Auth::User()->id;
         $user       = Auth::User()->user;

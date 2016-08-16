@@ -67,9 +67,7 @@
                         </div>
                         <!-- /form-group -->
 
-                        <!-- Buscar producto -->
-                        @include('venta.forms.frmGrid')
-                        <!-- /Buscar producto -->
+                        
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
@@ -186,6 +184,10 @@
         </div>
         
     </div>
+
+<!-- Buscar producto -->
+@include('venta.forms.frmGrid')
+<!-- /Buscar producto -->
 
 <div class="hidden">
 {!!Form::open(['route'=>'detventa.store','method'=>'post','id'=>'frmDetalle' ])!!}
