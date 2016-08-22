@@ -74,7 +74,7 @@ if( count($data['header_vta']) > 0 )
                             <tr>
                                 <td>{{$o++}}</td>
                                 <td>
-                                    <a href="/ventas_fecha/{{$rs->date}}">{{$rs->fecha}}</a>
+                                    <a href="/ventas_fecha/{{$rs->date}}">{{$rs->fechaF}}</a>
                                 </td>
                                 <td class="text-right">{{$rs->total}}</td>
                             </tr>

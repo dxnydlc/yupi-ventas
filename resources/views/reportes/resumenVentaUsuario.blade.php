@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Invoice Design <small>Sample user invoice design</small></h2>
+                            <h2>Reporte de ventas <small>Ventas del usuario actual</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -64,12 +64,28 @@
 
                             <section class="content invoice">
                                 <!-- title row -->
-                                <div class="row">
-                                    <div class="col-xs-12 invoice-header">
+                                <div class="row" id="filtroBusqueda" >
+                                    <div class="col-xs-4 invoice-header">
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="inicio" id="inicio" value="<?php echo $response['inicio']; ?>" />
+                                            <span class="input-group-addon">Hasta</span>
+                                            <input type="text" class="input-sm form-control" name="fin" id="fin" value="<?php echo $response['fin']; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control hidden ">
+                                                {!!Form::select('cbousuario', $response['users'] ,null,[ 'id' => 'cbousuario', 'placeholder'=>'Todos', 'class'=>'form-control '])!!}
+                                            <span class="input-group-btn">
+                                                <button id="btnBuscarFiltro" class="btn btn-primary" type="button">Buscar</button> 
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 invoice-header hidden ">
                                         <h1>
-                                <i class="fa fa-globe"></i> 
-                                <small class="pull-right">Fecha: </small>
-                            </h1>
+                                            <!--<i class="fa fa-globe"></i> -->
+                                            <small class="pull-right">Fecha: </small>
+                                        </h1>
                                     </div>
                                     <!-- /.col -->
                                 </div>
@@ -205,11 +221,9 @@
 
     {!!Html::script('js/custom.js')!!}
 
-    {!!Html::script('js/custom/addPE.js')!!}
-
     {!!Html::script('js/custom/funciones.js')!!}
 
-    
+    {!!Html::script('js/custom/reportes_usuario.js')!!}
 
 @endsection
 

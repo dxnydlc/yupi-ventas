@@ -17,6 +17,8 @@ use yupiventas\productos;
 use yupiventas\config;
 use yupiventas\Routing\Route;
 
+use yupiventas\User;
+
 use Session;
 use Redirect;
 use Carbon;
@@ -119,6 +121,7 @@ class reportesController extends Controller
         $tipo_user      = Auth::User()->type;
         $id_user        = Auth::User()->id;
         $user           = Auth::User()->user;
+        $usuarios       = array();
         #
         $fecha  = $this->fecha_hoy();
         $data   = array();
@@ -126,10 +129,12 @@ class reportesController extends Controller
         $response = array();
         if( $tipo_user == 'Administrador' )
         {
+            $usuarios = $users = User::lists('user','id');
             $data = venta::where('fecha','=',$fecha)->get();
         }
         else
         {
+            $usuarios = $users = User::where('id','=',$id_user)->lists('user','id');
             $data = venta::where( [['user_creado','=',$user],['fecha','=',$fecha]] )->get();
         }
         #
@@ -138,9 +143,62 @@ class reportesController extends Controller
         $fecha = $dia.'/'.$mes.'/'.$anio;
         #
         $response['data']   = $data;
-        $response['fecha']  = $fecha;
+        $response['inicio'] = $fecha;
+        $response['fin']    = $fecha;
+        $response['users'] = $usuarios;
         #
-        #return $response['data'];
+        #return $usuarios;
+        return view('reportes.resumenVentaUsuario',compact('response'));
+    }
+
+
+    public function ventas_user_filtro( $inicio , $fin , $userf )
+    {
+
+        #Resumen de las ventas del usuario actual
+        #DB::enableQueryLog();
+        $tipo_user      = Auth::User()->type;
+        $id_user        = Auth::User()->id;
+        $user           = Auth::User()->user;
+        $usuarios       = array();
+        #
+        $fecha  = $this->fecha_hoy();
+        $data   = array();
+        #
+        $response = array();
+        if( $tipo_user == 'Administrador' )
+        {
+            $usuarios = $users = User::lists('user','id');
+            #to do
+            if( $userf == 'all' )
+            {
+                $data = venta::where('fecha','>=',$inicio)->where('fecha','<=',$fin)->get();
+            }
+            else
+            {
+                $data = venta::where('fecha','>=',$inicio)->where([['fecha','<=',$fin],['id_user_creado','=',$userf]])->get();
+            }
+        }
+        else
+        {
+            $usuarios = $users = User::where('id','=',$id_user)->lists('user','id');
+            $data = venta::where( [['user_creado','=',$user],['fecha','>=',$inicio],['fecha','<=',$fin]] )->get();
+        }
+        #
+        #return DB::getQueryLog();
+        #Fecha de inicio, latina
+        list($anio,$mes,$dia) = explode('-', $inicio );
+        $inicio = $dia.'/'.$mes.'/'.$anio;
+        #Fecjha de fin latina
+        list($anio,$mes,$dia) = explode('-', $fin );
+        $fin = $dia.'/'.$mes.'/'.$anio;
+        #
+        $response['data']   = $data;
+        $response['inicio'] = $inicio;
+        $response['fin']    = $fin;
+        #
+        $response['users'] = $usuarios;
+        #return $usuarios;
         return view('reportes.resumenVentaUsuario',compact('response'));
     }
 

@@ -55,7 +55,7 @@
             </li>
             <li><a><i class="fa fa-bar-chart-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="chartjs.html">Ventas x Usuario</a>
+                    <li><a href="/rep_venta_user">Ventas x Usuario</a>
                     </li>
                     <li><a href="chartjs2.html">Ventas todas</a>
                     </li>

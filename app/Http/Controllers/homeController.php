@@ -220,6 +220,7 @@ class homeController extends Controller
 
     public function get_headers_ventas_home()
     {
+        #DB::enableQueryLog();
         $tipo     = Auth::User()->type;
         $id_user        = Auth::User()->id;
         $user           = Auth::User()->user;
@@ -227,13 +228,13 @@ class homeController extends Controller
         $response = array();
         if( $tipo == 'Administrador' )
         {
-            $response = DB::table('venta')->select( DB::raw("DATE_FORMAT(fecha,'%d/%m/%Y') as 'fecha', sum(total) as 'total', fecha as 'date' "))->groupBy('fecha')->orderBy('fecha','DESC')->get();
+            $response = DB::table('venta')->select( DB::raw("DATE_FORMAT(fecha,'%d/%m/%Y') as 'fechaF', sum(total) as 'total', fecha as 'date' "))->groupBy('fecha')->orderBy('fecha','DESC')->get();
         }
         else
         {
-            $response = DB::table('venta')->select( DB::raw("DATE_FORMAT(fecha,'%d/%m/%Y') as 'fecha', sum(total) as 'total', fecha as 'date' "))->where([['user_creado','=',$user],['estado','<>','DEL']])->groupBy('fecha')->orderBy('fecha','DESC')->get();
+            $response = DB::table('venta')->select( DB::raw("DATE_FORMAT(fecha,'%d/%m/%Y') as 'fechaF', sum(total) as 'total', fecha as 'date' "))->where([['user_creado','=',$user],['estado','<>','DEL']])->groupBy('fecha')->orderBy('fecha','DESC')->get();
         }
-        
+        #return DB::getQueryLog();
         return $response;
     }
 

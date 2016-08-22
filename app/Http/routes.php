@@ -67,6 +67,9 @@ Route::group(['middleware' => ['web']], function () {
 
     #Reportes
     Route::get('rep_venta_user','reportesController@ventas_user');
+
+    #Reporte de ventas filtrado por fecha de inico y fecha de fin
+    Route::get('rep_venta_user_fil/{inicio}/{fin}/{userf}','reportesController@ventas_user_filtro');
     
 });
 

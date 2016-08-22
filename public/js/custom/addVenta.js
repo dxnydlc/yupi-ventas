@@ -55,7 +55,8 @@ var $rows = $('table#tblProductos > tbody tr ').keynavigator({
 				$('#'+_objProdBD).val( _texto );
 				hideBucarProducto();
 				focusTable( 'tblItems' , _rowCount );
-				swal("Agregado!", "El producto fue agregado a la lista", "success");
+				//swal("Agregado!", "El producto fue agregado a la lista", "success");
+				$('#mdlPrducto').modal('hide');
 			});
 			//console.log('pressed ENTER!', $el.attr('tdnombre') +' > '+_objProdBD);
 		},
@@ -568,10 +569,12 @@ function focusTableTD( _tabla , _obj )
 function frameBuscarProducto()
 {
 	//vamos a mostrar el frame de buscar producto y hacer focus en la cajita de texto
-	$('#frmBuscarProds').fadeIn();
-	$('#tblProductos_filter input[type="search"]').focus();
+	//$('#frmBuscarProds').fadeIn();
+	$('#mdlPrducto').modal('show');
+	//$('#tblProductos_filter input[type="search"]').focus();
 }
 function hideBucarProducto()
 {
-	$('#frmBuscarProds').fadeOut();
+	//$('#frmBuscarProds').fadeOut();
+	$('#mdlPrducto').modal('hide');
 }
