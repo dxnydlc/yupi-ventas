@@ -31,7 +31,7 @@ class productoLoteController extends Controller
     public function __construct()
     {
         $this->middleware('auth' );
-        $this->middleware('isAdmin' , ['only' => ['create','edit','show'] ] );
+        #$this->middleware('isAdmin' , ['only' => ['create','edit','show'] ] );
     }
 
 
@@ -186,6 +186,18 @@ class productoLoteController extends Controller
     public function make_lote( $data )
     {
         producto_lote::create($data);
+    }
+
+    public function buscador( $q )
+    {
+        #DB::enableQueryLog();
+        $data = array();
+        $dataProductos  = productos::lists('nombre','id_producto');
+        $data['data']   = productos::join('producto_lote', 'productos.id_producto', '=', 'producto_lote.id_producto')->where('producto_lote.producto','like','%'.$q.'%')->orderBy('id','DESC')->get();
+        #return DB::getQueryLog();
+        #return $data;
+        $data['prds']   = $dataProductos;
+        return view('productolote.homeProductoLote_filtro',compact('data'));
     }
 
 }

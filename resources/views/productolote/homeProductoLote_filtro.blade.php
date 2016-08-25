@@ -49,7 +49,7 @@
                     <div class="x_content">
                     <ul class="list-inline">
                         <li>
-                            <a href="/ex_prodlote" class="btn btn-success "><span class="glyphicon glyphicon-floppy-save" ></span> Exportar</a>
+                            <a href="/productolote" class="btn btn-default "><span class="glyphicon glyphicon-backward" ></span> Regresar</a>
                         </li>
                         <li>
                             <a href="#" data-toggle="modal" class="btn btn-primary " data-target="#frmNuevoProd" ><span class="glyphicon glyphicon-plus" ></span> Agregar nuevo Producto Lote</a>
@@ -125,7 +125,6 @@
 	                            @endforeach
                             </tbody>
                         </table>
-                        {{$data['data']->render()}}
 
                     </div>
                 </div>
