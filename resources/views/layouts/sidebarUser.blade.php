@@ -22,6 +22,9 @@
                     <li>
                         <a href="/rep_venta_user">Resumen ventas usuario</a>
                     </li>
+                    <li>
+                        <a href="/rep_prod_user">Productos por usuario</a>
+                    </li>
                 </ul>
             </li>
         </ul>

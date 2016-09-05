@@ -99,12 +99,14 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
 				                                    <th>Documento</th>
-				                                    <th>Cliente</th>
+                                                    <th>Producto</th>
+				                                    <th>Lote</th>
+                                                    <th>vencimiento</th>
+                                                    <th class="text-right" >cantidad</th>
+                                                    <th class="text-right" >precio</th>
 				                                    <th class="text-right" >Total</th>
 				                                    <th>Fecha</th>
-				                                    <th>Estado</th>
 				                                    <th>Usuario</th>
                                                 </tr>
                                             </thead>
@@ -115,19 +117,15 @@
 			                                $tipo_doc = $ve->tipo_doc;
 			                                ?>
 			                                <tr id="fila_{{$ve->id}}" >
-			                                    <th scope="row">{{$ve->id}}</th>
-			                                    <td>
-			                                        <?php if( $ve->estado == 'Cerrado' ){ 
-			                                            echo '<a href="/invoice_venta/'.$ve->id.'" >'.$tipo_doc.' '.$ve->serie.' - '.$ve->correlativo.'</a>';
-			                                        }else{
-			                                            echo $tipo_doc.' '.$ve->serie.' - '.$ve->correlativo;
-			                                        } ?>
-			                                    </td>
-			                                    <td>{{$ve->cliente}}</td>
+			                                    <th scope="row"><a href="/invoice_venta/{{$ve->id_venta}}">{{$ve->id_venta}}</a></th>
+			                                    <td>{{$ve->producto}}</td>
+                                                <td>{{$ve->lote}}</td>
+                                                <td>{{$ve->vencimiento}}</td>
 			                                    <td class="text-right" >{{$ve->total}}</td>
-			                                    <td>{{$ve->fecha}}</td>
-			                                    <td>{{$ve->estado}}</td>
-			                                    <td>{{$ve->user_creado}}</td>
+                                                <td class="text-right" >{{$ve->precio}}</td>
+                                                <td class="text-right" >{{$ve->total}}</td>
+			                                    <td>{{$ve->created_at}}</td>
+			                                    <td>{{$ve->usuario}}</td>
 			                                </tr>
 			                                <?php $totalDoc = $totalDoc + $ve->total; ?>
 			                                @endforeach
@@ -149,8 +147,8 @@
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Total:</th>
-                                                        <th class="text-right" >{{$totalDoc}}</th>
+                                                        <th><h2>Total:</h2></th>
+                                                        <th class="text-right" ><h2>{{$totalDoc}}</h2></th>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -223,7 +221,7 @@
 
     {!!Html::script('js/custom/funciones.js')!!}
 
-    {!!Html::script('js/custom/reportes_usuario.js')!!}
+    {!!Html::script('js/custom/rep_producto_usuario.js')!!}
 
 @endsection
 

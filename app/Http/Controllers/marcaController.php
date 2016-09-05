@@ -34,7 +34,7 @@ class marcaController extends Controller
     public function __construct()
     {
         $this->middleware('auth' );
-        $this->middleware('marcas' , ['only' => ['create','edit','show'] ] );
+        #$this->middleware('marcas' , ['only' => ['create','edit','show'] ] );
     }
 
     public function index()

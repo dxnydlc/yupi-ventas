@@ -29,7 +29,7 @@ class categoriaController extends Controller
     public function __construct()
     {
         $this->middleware('auth' );
-        $this->middleware('categ' , ['only' => ['create','edit','show'] ] );
+        #$this->middleware('categ' , ['only' => ['create','edit','show'] ] );
     }
 
 

@@ -19,18 +19,31 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/','homeController');
     Route::resource('login','logController');
 
-
+    #Categoria
     Route::resource('categoria','categoriaController');
+
+    #Marca
     Route::resource('marca','marcaController');
+
+    #Clase
     Route::resource('clase','claseController');
+
+    #Proveedor
     Route::resource('proveedor','proveedorController');
     
+    #Producto
     Route::resource('producto','productoController');
+
+    #Buscar producto
     Route::get('buscarprod/{q}','productoController@buscar');
 
+    #detalle parte de entrada
     Route::resource('detpe','detallePEController');
 
+    #parte de entrada
     Route::resource('pe','peController');
+
+    #Kardex
     Route::resource('kardex','kardexController');
     
     #ventas
@@ -68,11 +81,23 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('invoice_pe/{id}','peController@invoice');
     Route::get('ventas_fecha/{fecha}','ventasController@venta_fecha');
 
-    #Reportes
+    #Reportes venta x usuario
     Route::get('rep_venta_user','reportesController@ventas_user');
 
     #Reporte de ventas filtrado por fecha de inico y fecha de fin
     Route::get('rep_venta_user_fil/{inicio}/{fin}/{userf}','reportesController@ventas_user_filtro');
+
+    #Reporte producto x usuario
+    Route::get('rep_prod_user','reportesController@producto_usuario');
+
+    #Reporte producto x usuario filtro fecha
+    Route::get('rep_prod_user_fil/{inicio}/{fin}/{userf}','reportesController@producto_usuario_filtro');
+
+    #Reporte producto margen de ventas
+    Route::get('rep_prod_margen','reportesController@producto_margen');
+
+    #Reporte producto margen de ventas filtro
+    Route::get('rep_prod_margen_filtro/{inicio}/{fin}','reportesController@producto_margen_filtro');
     
 });
 

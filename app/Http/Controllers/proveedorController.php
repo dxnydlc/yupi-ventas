@@ -35,8 +35,8 @@ class proveedorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth' );
-        $this->middleware('isAdmin' , ['only' => ['create','edit','show'] ] );
+        $this->middleware('auth');
+        #$this->middleware('isAdmin' , ['only' => ['create','edit','show'] ] );
     }
 
     

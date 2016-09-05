@@ -75,7 +75,7 @@
                                     <div class="col-sm-4">
                                         <div class="input-group">
                                             <input type="text" class="form-control hidden ">
-                                                {!!Form::select('cbousuario', $response['users'] ,null,[ 'id' => 'cbousuario', 'placeholder'=>'Todos', 'class'=>'form-control '])!!}
+                                                
                                             <span class="input-group-btn">
                                                 <button id="btnBuscarFiltro" class="btn btn-primary" type="button">Buscar</button> 
                                             </span>
@@ -99,13 +99,14 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
 				                                    <th>Documento</th>
-				                                    <th>Cliente</th>
-				                                    <th class="text-right" >Total</th>
+                                                    <th>Producto</th>
+                                                    <th>Cantidad</th>
+                                                    <th class="text-right" >Compra</th>
+                                                    <th class="text-right" >Venta</th>
+				                                    <th class="text-right" >Utilidad</th>
+				                                    <th>Margen</th>
 				                                    <th>Fecha</th>
-				                                    <th>Estado</th>
-				                                    <th>Usuario</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -113,23 +114,26 @@
                                             @foreach($response['data'] as $ve)
 			                                <?php
 			                                $tipo_doc = $ve->tipo_doc;
+                                            #Compra
+                                            $compra = $ve->compra * $ve->cantidad;
+                                            #Venta
+                                            $venta = $ve->precio * $ve->cantidad;
+                                            $ganancia = $venta - $compra;
 			                                ?>
 			                                <tr id="fila_{{$ve->id}}" >
-			                                    <th scope="row">{{$ve->id}}</th>
+			                                    <th scope="row"><a href="/invoice_venta/{{$ve->id_venta}}">{{$ve->id_venta}}</a></th>
 			                                    <td>
-			                                        <?php if( $ve->estado == 'Cerrado' ){ 
-			                                            echo '<a href="/invoice_venta/'.$ve->id.'" >'.$tipo_doc.' '.$ve->serie.' - '.$ve->correlativo.'</a>';
-			                                        }else{
-			                                            echo $tipo_doc.' '.$ve->serie.' - '.$ve->correlativo;
-			                                        } ?>
-			                                    </td>
-			                                    <td>{{$ve->cliente}}</td>
-			                                    <td class="text-right" >{{$ve->total}}</td>
-			                                    <td>{{$ve->fecha}}</td>
-			                                    <td>{{$ve->estado}}</td>
-			                                    <td>{{$ve->user_creado}}</td>
+                                                    {{$ve->producto}}<br/>
+                                                    <small>{{$ve->lote}} {{$ve->vencimiento}}</small>
+                                                </td>
+                                                <td class="text-right" >{{$ve->cantidad}}</td>
+			                                    <td class="text-right" >{{$ve->compra}}</td>
+                                                <td class="text-right" >{{$ve->precio}}</td>
+                                                <td class="text-right" >{{$ve->utilidad}}%</td>
+			                                    <td class="text-right" >{{$ganancia}}</td>
+                                                <td>{{$ve->created_at}}</td>
 			                                </tr>
-			                                <?php $totalDoc = $totalDoc + $ve->total; ?>
+			                                <?php $totalDoc = $totalDoc + $ganancia; ?>
 			                                @endforeach
                                             </tbody>
                                         </table>
@@ -149,8 +153,8 @@
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Total:</th>
-                                                        <th class="text-right" >{{$totalDoc}}</th>
+                                                        <th><h2>Total margen:</h2></th>
+                                                        <th class="text-right" ><h2>{{$totalDoc}}</h2></th>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -223,7 +227,7 @@
 
     {!!Html::script('js/custom/funciones.js')!!}
 
-    {!!Html::script('js/custom/reportes_usuario.js')!!}
+    {!!Html::script('js/custom/rep_producto_margen.js')!!}
 
 @endsection
 
